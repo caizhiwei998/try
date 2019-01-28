@@ -1,0 +1,135 @@
+{% extends 'base_pv.html' %}
+{% block body_block %}
+
+        <form name="form1" method="post" action="" style="padding-left:150px;padding-top:40px;">
+            省份：<select name="province" id="province" onchange="changeSelect(this.selectedIndex)"></select>
+            地区：<select name="city" id="city"></select>
+            <input type="submit" value="查询">
+
+        </form>
+     <script type="text/javascript">
+     var arr_province = {{ arr_pro|safe }};
+     var arr_city = {{ arr_city|safe }};
+     //网页加载完成，初始化菜单
+     window.onload = init;//传入函数地址
+     function init(){
+         //首先获取对象
+         var province = document.form1.province;
+         var city = document.form1.city;
+
+         //指定省份中<option>标记的个数
+         province.length = arr_province.length;
+
+         //循环将数组中的数据写入<option>标记中
+         for(var i=0;i<arr_province.length;i++){
+             province.options[i].text = arr_province[i];
+             province.options[i].value = arr_province[i];
+         }
+
+        //修改省份列表的默认选择项
+        var index = 0;
+        province.selectedIndex = index;
+
+        //指定城市中<option>标记的个数
+        city.length = arr_city[index].length;
+
+         //循环将数组中的数据写入<option>标记中
+         for (var j = 0; j<arr_city[index].length;j++) {
+             city.options[j].text = arr_city[index][j];
+            city.options[j].value = arr_city[index][j];
+         }
+
+     }
+
+     function  changeSelect(index){
+         //选择对象
+         var city = document.form1.city;
+         //修改省份列表的选择项
+         province.selectedIndex = index;
+
+         //指定城市中<option>标记的个数
+         city.length = arr_city[index].length;
+
+         //循环将数组中的数据写入<option>标记中
+         for (var j = 0; j<arr_city[index].length;j++) {
+            city.options[j].text = arr_city[index][j];
+            city.options[j].value = arr_city[index][j];
+         }
+    }
+
+ </script>
+
+
+
+
+
+
+
+<div id="container2" style="min-width: 310px; height: 700px; margin: 0 auto;"></div>
+    <script>
+            Highcharts.chart('container2', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: {{choose_pro_city|safe}}
+    },
+    subtitle: {
+        text: '点击土地一级分类可以下钻查看各二级分类PV{{jiezhi_date2}}'
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: '土地详情页PV'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.0f}'
+            }
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b><br/>'
+    },
+    series: [{
+        name: '土地一级分类PV',
+        colorByPoint: true,
+
+        data: [
+        {% for row_province_type in data_province_pic %}
+        {
+            name: '{{ row_province_type.2|safe }}',
+            y: {{ row_province_type.3|safe }},
+            drilldown: '{{ row_province_type.2|safe }}'
+        },
+        {% endfor %}
+        ]
+    }],
+    drilldown: {
+        series: [
+
+            {% for key_type, value_type in series_pic.items() %}
+                {
+                name: '{{ key_type }}',
+                id: '{{ key_type }}',
+
+                data:  {{ value_type|safe}}
+                },
+
+            {% endfor %}
+
+        ]
+    }
+});
+    </script>
+{% endblock %}

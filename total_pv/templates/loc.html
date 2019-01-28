@@ -1,0 +1,70 @@
+{% extends 'base_pv.html' %}
+{% block body_block %}
+        <div id="container" style="min-width: 310px; height: 720px; margin: 0 auto"></div>
+        <script>
+            Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: '服务中心土地详情页累计PV'
+    },
+    subtitle: {
+        text: '点击省份可下钻查看各市PV{{ jiezhi_date }}'
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: '土地详情页PV'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.0f}'
+            }
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b><br/>'
+    },
+    series: [{
+        name: '省份PV',
+        colorByPoint: true,
+
+        data: [
+        {% for row_province_loc in data_province %}
+        {
+            name: '{{ row_province_loc.0 }}',
+            y: {{ row_province_loc.1 }},
+            drilldown: '{{ row_province_loc.0 }}'
+        },
+        {% endfor %}
+        ]
+    }],
+    drilldown: {
+        series: [
+
+            {% for key_loc, value_loc in series.items() %}
+                {
+                name: '{{ key_loc }}',
+                id: '{{ key_loc }}',
+
+                data:  {{ value_loc|safe}}
+                },
+
+            {% endfor %}
+
+        ]
+    }
+});
+        </script>
+{% endblock %}

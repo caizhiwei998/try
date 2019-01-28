@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>土流网土地数据看板</title>
+    <style type="text/css">
+        body {min-width:1880px;text-align:center;}
+        div.tu {float:left;border:1px solid #D8D8D8;padding:5px;margin:5px;}
+        div.bankuai {width:1700px;margin:0px auto}
+        p.taitou{padding-left:95px;font-family:verdana,arial,sans-serif;
+        font-size:24px;font-weight:bold;}
+    </style>
+
+</head>
+
+<body>
+
+<div class="taitou">
+    <p class="taitou">{{ biaoti }}</p>
+</div>
+
+<div class="bankuai" >
+    {% for jsfile_name1 in script_list1 %}
+    <script src="{{ host }}/{{ jsfile_name1 }}.js"></script>
+    {% endfor %}
+
+    <div class="tu" >
+        {{ myechart2|safe }}
+    </div>
+
+    <div class="tu"  >
+        {{ myechart3|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart4|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart5|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart6|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart1|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart7|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart8|safe }}
+    </div>
+
+    {% for jsfile_name2 in script_list2 %}
+        <script src="{{ host }}/{{ jsfile_name2 }}.js"></script>
+    {% endfor %}
+    <div class="tu" >
+        {{ myechart9|safe }}
+    </div>
+
+</div>
+
+<div class="bankuai" >
+    {% for jsfile_name001 in script_list001 %}
+        <script src="{{ host }}/{{ jsfile_name001 }}.js"></script>
+    {% endfor %}
+
+    <div class="tu" >
+        {{ myechart001|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart002|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart003|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart004|safe }}
+    </div>
+
+</div>
+
+
+
+
+
+<div class="bankuai" >
+    {% for jsfile_name01 in script_list01 %}
+        <script src="{{ host }}/{{ jsfile_name01 }}.js"></script>
+    {% endfor %}
+
+    <div class="tu" >
+        {{ myechart02|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart03|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart04|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart05|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart06|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart01|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart07|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart08|safe }}
+    </div>
+
+    <div class="tu" >
+        {{ myechart09|safe }}
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>服务中心土地详情页数据</title>
+        <style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+        #container {padding-left:100px;padding-right:100px;padding-top:50px;}
+        #container2 {padding-left:100px;padding-right:100px;}
+        </style>
+        <script src="/static/Highcharts-7.0.0/code/highcharts.js"></script>
+        <script src="/static/Highcharts-7.0.0/code/modules/exporting.js"></script>
+        <script src="/static/Highcharts-7.0.0/code/modules/drilldown.js"></script>
+        <script src="/static/Highcharts-7.0.0/code/highcharts-zh_CN.js"></script>
+
+</head>
+
+<body>
+
+<ul>
+  <li><a href="/loc/">各省市地区累计PV排名</a></li>
+  <li><a href="/type/">各土地类型累计PV查询</a></li>
+  <li><a href="/user/">用户行为数据查询</a></li>
+
+</ul>
+{% block  body_block %}
+
+{% endblock %}
+</body>
+</html>
