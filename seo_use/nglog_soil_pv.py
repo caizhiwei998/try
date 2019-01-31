@@ -10,7 +10,7 @@ def get_nday_list(n):
         before_n_days.append(str((datetime.date.today() - datetime.timedelta(days=i)).strftime('%Y%m%d')))
     return before_n_days
 
-log_date_list = get_nday_list(30)
+log_date_list = get_nday_list(30)  #目的为了读取30天日志
 last_log_name=[".napp1.log.gz",".napp2.log.gz"]
 
 for day in log_date_list:
