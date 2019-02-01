@@ -12,10 +12,10 @@ REMOTE_HOST = "/static/js"
 @app.route("/tlw/kanban/")
 def kanban():
     dbconn = pymysql.connect(
-        host="10.10.66.8",
-        database="seo_cai",
-        user="caizhiwei",
-        password="20180803",
+        host="***",
+        database="***",
+        user="***",
+        password="***",
         port=3306,
         charset='utf8'
     )
@@ -91,10 +91,10 @@ def kanban():
 @app.route("/tlw/kanban/<mon>/")
 def kanban_mon(mon):
     dbconn = pymysql.connect(
-        host="10.10.66.8",
-        database="seo_cai",
-        user="caizhiwei",
-        password="20180803",
+        host="***",
+        database="***",
+        user="***",
+        password="***",
         port=3306,
         charset='utf8'
     )
