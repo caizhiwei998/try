@@ -40,7 +40,7 @@ for day in log_date_list:
         conn = pymysql.connect(
             host="10.10.66.8",
             user="caizhiwei",
-            password="20180803",
+            password="*****",
             port=3306,
             charset="utf8",
             db="seo_cai")
