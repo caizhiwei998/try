@@ -3,12 +3,12 @@ import pandas as pd
 
 
 dbconn = pymysql.connect(
-    host="10.10.66.8",
-    user="caizhiwei",
-    password="20180803",
+    host="***",
+    user="***",
+    password="***",
     port=3306,
     charset="utf8",
-    db="dqytlwork")
+    db="***")
 
 
 
@@ -117,12 +117,12 @@ for index, row in df_fn.iterrows():
 
 
 conn = pymysql.connect(
-        host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        host="***",
+        user="***",
+        password="***",
         port=3306,
         charset="utf8",
-        db="dqytlwork")
+        db="***")
 
 #上传JSON数据
 cursor = conn.cursor()
