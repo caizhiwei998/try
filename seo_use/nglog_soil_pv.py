@@ -53,7 +53,7 @@ for day in log_date_list:
                     r'(.*) - - \[(.*) \+\d+\] \"(GET|POST) (.*) .*\" (\d+) (\d+) \"(.*?)\" \"(.*?)\".*- (.*) -')  # 匹配每条日志数据
                 m = pattern.search(line)
                 line = f.readline().decode('utf-8')  # 获取第2行、第3行。。。。。。数据
-                if m != None and m.group(5)=='200':  # 如果匹配成功 且状态码为200
+                if m != None and m.group(5) in ['200','301','302','303','307']:  # 如果匹配成功 且状态码为成功访问或重定向
                     #ip = m.group(1)  # 获取ip
                     time = logtime_format(m.group(2))  # 获取时间
                     #method = m.group(3)  # 获取request方法
