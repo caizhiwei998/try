@@ -2,6 +2,26 @@ import gzip
 import re
 import pymysql
 import datetime
+import numpy as np
+
+
+#nginx日志日期转化为便于数据库存储的格式
+def logtime_format(logtime):
+    en_mon=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    num_mon=['01','02','03','04','05','06','07','08','09','10','11','12']
+
+    pattern_time = re.compile(r'(\d+)/(\w+)/(\d+):(\d+):(\d+):(\d+)')
+    m_time = pattern_time.search(logtime)
+    year=m_time.group(3)
+    mon=m_time.group(2)
+    for i in np.arange(12):
+        if mon == en_mon[i]:
+            mon = num_mon[i]
+    day=m_time.group(1)
+    h=m_time.group(4)
+    m=m_time.group(5)
+    s=m_time.group(6)
+    return(year+'-'+mon+'-'+day+' '+h+':'+m+':'+s+'')
 
 #获取今天之前n天日期列表
 def get_nday_list(n):
@@ -10,7 +30,7 @@ def get_nday_list(n):
         before_n_days.append(str((datetime.date.today() - datetime.timedelta(days=i)).strftime('%Y%m%d')))
     return before_n_days
 
-log_date_list = get_nday_list(30)  #目的为了读取30天日志
+log_date_list = get_nday_list(31)
 last_log_name=[".napp1.log.gz",".napp2.log.gz"]
 
 for day in log_date_list:
@@ -35,15 +55,15 @@ for day in log_date_list:
                 line = f.readline().decode('utf-8')  # 获取第2行、第3行。。。。。。数据
                 if m != None and m.group(5)=='200':  # 如果匹配成功 且状态码为200
                     #ip = m.group(1)  # 获取ip
-                    time = m.group(2)  # 获取时间
+                    time = logtime_format(m.group(2))  # 获取时间
                     #method = m.group(3)  # 获取request方法
                     url = m.group(4)  # 获取url
                     #status = str(m.group(5))  # 获取状态码
                     #refer = m.group(7)  # 获取来源页面
                     #agent = m.group(8)  # 获取头部信息
                     #host = m.group(9)  # 获取域名
-                    pattern = re.compile(r'.*?(s-view|view)-(\d+).*')  #匹配土地详情页
-                    m_url = pattern.search(url)
+                    pattern_url = re.compile(r'.*?(s-view|view)-(\d+).*')  #匹配土地详情页
+                    m_url = pattern_url.search(url)
                     if m_url != None:
                         src=m_url.group(1) #土地来源
                         sid=m_url.group(2) #土地id
