@@ -68,7 +68,7 @@ for day in log_date_list:
                         src=m_url.group(1) #土地来源
                         sid=m_url.group(2) #土地id
                         add_date = datetime.date.today().strftime('%Y%m%d') #添加日期
-                        cursor = conn.cursor()
+                        
                         sql = 'insert into nglog_spv(time,src,sid,add_date) values(%s,%s,%s,%s)'
                         cur.execute(sql, (time,src,sid,add_date))  # 执行插入数据
                         conn.commit()
@@ -77,3 +77,4 @@ for day in log_date_list:
         finally:
             f.close()  # 关闭文件流
             cur.close()  # 关闭游标
+            conn.close()
