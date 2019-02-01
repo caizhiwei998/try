@@ -57,6 +57,6 @@ def site_df_concat(site_list,days):
     
 site_data_final=site_df_concat(site_list,1462)
 
-conn = create_engine('mysql+pymysql://caizhiwei:20180803@10.10.66.8:3306/seo_cai?charset=utf8')
+conn = create_engine('mysql+pymysql://uesrname:password@host:3306/database?charset=utf8')
 #replace替换原数据、append插入数据、fail如果表存在啥也不做
 pd.io.sql.to_sql(site_data_final,'baidutongji_tuliu_pv',con=conn,if_exists='append',index=False)  
