@@ -15,12 +15,12 @@ def loc():
                   + str(t_loc.day) + '日'
     #数据库连接
     dbconn = pymysql.connect(
-        host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        host="******",
+        user="******",
+        password="******",
         port=3306,
         charset='utf8',
-        db='seo_cai')
+        db='******')
 
     #读取sql获取省、市pv数据
     sql_province = '''
@@ -74,12 +74,12 @@ def type():
 
     #数据库连接
     dbconn_diqu = pymysql.connect(
-        host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        host="***",
+        user="***",
+        password="***",
         port=3306,
         charset='utf8',
-        db='seo_cai')
+        db='***')
 
     #读取sql获取省市信息数据
     sql_diqu = 'SELECT province,city from sv_loctype_pv group by province_id ,city_id ORDER BY province_id ,city_id'
@@ -222,12 +222,12 @@ def user():
 
     #数据库连接
     dbconn_date = pymysql.connect(
-        host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        host="***",
+        user="***",
+        password="***",
         port=3306,
         charset='utf8',
-        db='seo_cai')
+        db='***')
 
     #读取sql获取各类型各时间用户行为数据
     if get_pro and get_sv != '请选择服务中心':
