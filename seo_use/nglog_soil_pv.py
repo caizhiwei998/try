@@ -38,12 +38,12 @@ for day in log_date_list:
         f = gzip.open("/mnt/log/www.tuliu.com/access_"+day+l_name, 'rb')  # 打开压缩文件对象
 
         conn = pymysql.connect(
-            host="10.10.66.8",
-            user="caizhiwei",
+            host="******",
+            user="*****",
             password="*****",
             port=3306,
             charset="utf8",
-            db="seo_cai")
+            db="*****")
         cur = conn.cursor()
 
         try:
