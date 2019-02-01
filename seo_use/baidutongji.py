@@ -13,8 +13,8 @@ def baidutongji(site_name,site_id,the_days):
     lastday = today - datetime.timedelta(days=the_days)
     end, start = str(yesterday).replace("-", ""), str(lastday).replace("-", "")
     base_url = "https://api.baidu.com/json/tongji/v1/ReportService/getData"
-    body = {"header": {"account_type": 1, "password": "tlwseo#2018", "token": "678498e9a72c12573893c40e4bc41aad",
-                       "username": "techserv"},
+    body = {"header": {"account_type": 1, "password": "******", "token": "678498e9a72c12573893c40e4bc41aad",
+                       "username": "******"},
             "body": {"siteId":site_id , "method": "trend/time/a", "start_date": start, "end_date": end,
                      "metrics": "pv_count,visitor_count,ip_count","gran":"day"}} 
     data = bytes(json.dumps(body), 'utf8')
