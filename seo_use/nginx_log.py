@@ -31,7 +31,7 @@ try:
             agent=m.group(8)#获取头部信息
             host=m.group(9)#获取域名
 
-            cursor = conn.cursor()
+            
             sql='insert into nginx_log(ip,time,method,url,status,refer,agent,host) values(%s,%s,%s,%s,%s,%s,%s,%s)'
             cur.execute(sql,(ip,time,method,url,status,refer,agent,host))#执行插入数据
             conn.commit()
@@ -39,6 +39,7 @@ try:
 finally:
     f.close() #关闭文件流
     cur.close()#关闭游标
+    conn.close()
 
 	
 	
@@ -76,7 +77,7 @@ try:
             agent=m.group(8)#获取头部信息
             host=m.group(9)#获取域名
 
-            cursor = conn.cursor()
+            
             sql='insert into nginx_log(ip,time,method,url,status,refer,agent,host) values(%s,%s,%s,%s,%s,%s,%s,%s)'
             cur.execute(sql,(ip,time,method,url,status,refer,agent,host))#执行插入数据
             conn.commit()
@@ -84,3 +85,4 @@ try:
 finally:
     f.close() #关闭文件流
     cur.close()#关闭游标
+    conn.close()
