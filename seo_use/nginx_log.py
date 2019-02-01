@@ -8,8 +8,8 @@ f = gzip.open("F:/rizhi/access_20190128.napp1.log.gz", 'rb')#打开压缩文件�
 
 conn = pymysql.connect(
         host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        user="******",
+        password="*****",
         port=3306,
         charset="utf8",
         db="test")
