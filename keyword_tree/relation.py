@@ -12,12 +12,12 @@ REMOTE_HOST = "/static/js"
 def relation():
 
     dbconn = pymysql.connect(
-        host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        host="***",
+        user="***",
+        password="***",
         port=3306,
         charset="utf8",
-        db="dqytlwork")
+        db="***")
 
     #读取数据库JSON数据
     sql = "select json from words_relation_json where id =1"
