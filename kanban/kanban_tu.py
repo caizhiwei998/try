@@ -4,7 +4,7 @@ from pyecharts import Pie,Bar,Line,Overlap,Map,WordCloud
 
 
 def fabu_diqu(conn,days,width,height):
-    sql_fabu_diqu = "select name,count,mj from kanban_fabu_diqu where create_date= (select max(create_date) from kanban_fabu_diqu)"
+    sql_fabu_diqu = "select name,count,mj from kanban_fabu_diqu where create_date= (select max(create_date) from kanban_fabu_diqu) order by mj desc"
     data_fabu_diqu = pd.read_sql(sql_fabu_diqu,conn)
 
     fabu_diqu_name = list(data_fabu_diqu.iloc[:, 0])
@@ -172,7 +172,7 @@ def jiaoyi_map(conn,width,height):
 
 
 def jiaoyi_diqu(conn,days,width,height):
-    sql_jiaoyi_diqu = "select name,count,mj from kanban_jiaoyi_diqu where create_date= (select max(create_date) from kanban_jiaoyi_diqu)"
+    sql_jiaoyi_diqu = "select name,count,mj from kanban_jiaoyi_diqu where create_date= (select max(create_date) from kanban_jiaoyi_diqu order by mj desc)"
     data_jiaoyi_diqu = pd.read_sql(sql_jiaoyi_diqu, conn)
 
     jiaoyi_diqu_name = list(data_jiaoyi_diqu.iloc[:, 0])
@@ -322,7 +322,7 @@ def xuqiu_map(conn,width,height):
     return fabu_xuqiu_map
 
 def xuqiu_diqu(conn,days,width,height):
-    sql_xuqiu_diqu = "select name,count,mj from kanban_xuqiu_diqu where create_date= (select max(create_date) from kanban_xuqiu_diqu)"
+    sql_xuqiu_diqu = "select name,count,mj from kanban_xuqiu_diqu where create_date= (select max(create_date) from kanban_xuqiu_diqu) order by mj desc"
     data_xuqiu_diqu = pd.read_sql(sql_xuqiu_diqu, conn)
 
     xuqiu_diqu_name = list(data_xuqiu_diqu.iloc[:, 0])
