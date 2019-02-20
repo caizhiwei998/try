@@ -3,8 +3,8 @@ from pyecharts import Pie,Bar,Line,Overlap,Map,WordCloud
 
 
 def fabu_diqu_mon(conn,width,height,mon):
-    sql_fabu_diqu = "select name,count,mj from kanban_fabu_diqu where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                    "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_fabu_diqu = "select name,count,mj from kanban_fabu_diqu where year(date_sub(create_date,interval 1 month))='%s'" \
+                    "and month(date_sub(create_date,interval 1 month))='%s' order by mj desc"%(str(mon)[:4],str(mon)[-2:])
     data_fabu_diqu = pd.read_sql(sql_fabu_diqu,conn)
 
     fabu_diqu_name = list(data_fabu_diqu.iloc[:, 0])
@@ -26,8 +26,8 @@ def fabu_diqu_mon(conn,width,height,mon):
 
 
 def fabu_map_mon(conn,width,height,mon):
-    sql_fabu_map = "select name,count,mj from kanban_fabu_map where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                   "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_fabu_map = "select name,count,mj from kanban_fabu_map where year(date_sub(create_date,interval 1 month))='%s'" \
+                   "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_fabu_map = pd.read_sql(sql_fabu_map, conn)
 
     fabu_map_name = list(data_fabu_map.iloc[:, 0])
@@ -42,8 +42,8 @@ def fabu_map_mon(conn,width,height,mon):
 
 
 def fabu_type_mon(conn,width,height,zs_mj,mon):
-    sql_fabu_type = "select type,count,mj from kanban_fabu_type where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                    "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_fabu_type = "select type,count,mj from kanban_fabu_type where year(date_sub(create_date,interval 1 month))='%s'" \
+                    "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_fabu_type = pd.read_sql(sql_fabu_type,conn)
 
     date_fabu_type_count = data_fabu_type.sort_values('count', ascending=False)
@@ -76,8 +76,8 @@ def fabu_type_mon(conn,width,height,zs_mj,mon):
 
 
 def fabu_liuzhuan_mon(conn,width,height,zs_mj,mon):
-    sql_fabu_liuzhuan="select liuzhuan,count,mj from kanban_fabu_liuzhuan where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                      "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_fabu_liuzhuan="select liuzhuan,count,mj from kanban_fabu_liuzhuan where year(date_sub(create_date,interval 1 month))='%s'" \
+                    "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_fabu_liuzhuan=pd.read_sql(sql_fabu_liuzhuan,conn)
 
     data_fabu_liuzhuan_count=data_fabu_liuzhuan.sort_values('count',ascending=False)
@@ -108,8 +108,8 @@ def fabu_liuzhuan_mon(conn,width,height,zs_mj,mon):
 
 
 def fabu_size_mon(conn,width,height,mon):
-    sql_fabu_size = "select dikuai,count,mj from kanban_fabu_dikuai where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                    "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_fabu_size = "select dikuai,count,mj from kanban_fabu_dikuai where year(date_sub(create_date,interval 1 month)) ='%s'" \
+                    "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_fabu_size = pd.read_sql(sql_fabu_size, conn)
 
     fabu_size_title = str(mon)[:4] + '年' + str(mon)[-2:] + '月土流网各规模农业用地发布量（宗）'
@@ -123,8 +123,8 @@ def fabu_size_mon(conn,width,height,mon):
 
 
 def fabu_nianxian_mon(conn,width,height,mon):
-    sql_fabu_nianxian="select type,year from kanban_fabu_nianxian where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                      "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_fabu_nianxian="select type,year from kanban_fabu_nianxian where year(date_sub(create_date,interval 1 month))='%s'" \
+                    "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_fabu_nianxian=pd.read_sql(sql_fabu_nianxian,conn)
 
     fabu_nianxian_type = list(data_fabu_nianxian.iloc[:,0])
@@ -137,8 +137,8 @@ def fabu_nianxian_mon(conn,width,height,mon):
 
 
 def fabu_label_mon(conn,width,height,mon):
-    sql_fabu_label = "select name,count from kanban_fabu_label where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                     "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_fabu_label = "select name,count from kanban_fabu_label where year(date_sub(create_date,interval 1 month)) = '%s'" \
+                     "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_fabu_label = pd.read_sql(sql_fabu_label, conn)
 
     fabu_label_name = list(data_fabu_label.iloc[:, 0])
@@ -155,8 +155,8 @@ def fabu_label_mon(conn,width,height,mon):
 
 
 def jiaoyi_map_mon(conn,width,height,mon):
-    sql_jiaoyi_map = "select name,count,mj from kanban_jiaoyi_map where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                     "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_jiaoyi_map = "select name,count,mj from kanban_jiaoyi_map where year(date_sub(create_date,interval 1 month)) ='%s'" \
+                     "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_jiaoyi_map = pd.read_sql(sql_jiaoyi_map, conn)
 
     jiaoyi_map_name = list(data_jiaoyi_map.iloc[:, 0])
@@ -171,8 +171,8 @@ def jiaoyi_map_mon(conn,width,height,mon):
 
 
 def jiaoyi_diqu_mon(conn,width,height,mon):
-    sql_jiaoyi_diqu = "select name,count,mj from kanban_jiaoyi_diqu where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                      "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_jiaoyi_diqu = "select name,count,mj from kanban_jiaoyi_diqu where year(date_sub(create_date,interval 1 month))='%s'" \
+                      "and month(date_sub(create_date,interval 1 month))='%s' order by mj desc"%(str(mon)[:4],str(mon)[-2:])
     data_jiaoyi_diqu = pd.read_sql(sql_jiaoyi_diqu, conn)
 
     jiaoyi_diqu_name = list(data_jiaoyi_diqu.iloc[:, 0])
@@ -193,8 +193,8 @@ def jiaoyi_diqu_mon(conn,width,height,mon):
 
 
 def jiaoyi_type_mon(conn,width,height,zs_mj,mon):
-    sql_jiaoyi_type = "select type,count,mj from kanban_jiaoyi_type where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                      "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_jiaoyi_type = "select type,count,mj from kanban_jiaoyi_type where year(date_sub(create_date,interval 1 month))='%s'" \
+                    "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_jiaoyi_type = pd.read_sql(sql_jiaoyi_type, conn)
 
     date_jiaoyi_type_count = data_jiaoyi_type.sort_values('count', ascending=False)
@@ -227,8 +227,8 @@ def jiaoyi_type_mon(conn,width,height,zs_mj,mon):
 
 
 def jiaoyi_liuzhuan_mon(conn,width,height,zs_mj,mon):
-    sql_jiaoyi_liuzhuan = "select liuzhuan,count,mj from kanban_jiaoyi_liuzhuan where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                          "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_jiaoyi_liuzhuan = "select liuzhuan,count,mj from kanban_jiaoyi_liuzhuan where year(date_sub(create_date,interval 1 month)) ='%s'" \
+                          "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_jiaoyi_liuzhuan = pd.read_sql(sql_jiaoyi_liuzhuan, conn)
 
     data_jiaoyi_liuzhuan_count = data_jiaoyi_liuzhuan.sort_values('count', ascending=False)
@@ -260,8 +260,8 @@ def jiaoyi_liuzhuan_mon(conn,width,height,zs_mj,mon):
 
 
 def jiaoyi_size_mon(conn,width,height,mon):
-    sql_jiaoyi_size = "select dikuai,count,mj from kanban_jiaoyi_dikuai where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                      "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_jiaoyi_size = "select dikuai,count,mj from kanban_jiaoyi_dikuai where year(date_sub(create_date,interval 1 month))='%s'" \
+                    "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_jiaoyi_size = pd.read_sql(sql_jiaoyi_size, conn)
 
     jiaoyi_size_title = str(mon)[:4] + '年' + str(mon)[-2:] + '月土流网各规模农业用地交易量（宗）'
@@ -275,8 +275,8 @@ def jiaoyi_size_mon(conn,width,height,mon):
 
 
 def jiaoyi_nianxian_mon(conn,width,height,mon):
-    sql_jiaoyi_nianxian = "select type,year from kanban_jiaoyi_nianxian where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                          "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_jiaoyi_nianxian = "select type,year from kanban_jiaoyi_nianxian where year(date_sub(create_date,interval 1 month)) ='%s'" \
+                          "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_jiaoyi_nianxian = pd.read_sql(sql_jiaoyi_nianxian, conn)
 
     jiaoyi_nianxian_type = list(data_jiaoyi_nianxian.iloc[:, 0])
@@ -289,8 +289,8 @@ def jiaoyi_nianxian_mon(conn,width,height,mon):
 
 
 def jiaoyi_haoshi_mon(conn,width,height,mon):
-    sql_jiaoyi_haoshi = "select type,time from kanban_jiaoyi_haoshi where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                        "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_jiaoyi_haoshi = "select type,time from kanban_jiaoyi_haoshi where year(date_sub(create_date,interval 1 month))='%s'" \
+                        "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_jiaoyi_haoshi = pd.read_sql(sql_jiaoyi_haoshi, conn)
 
     jiaoyi_haoshi_type = list(data_jiaoyi_haoshi.iloc[:, 0])
@@ -305,8 +305,8 @@ def jiaoyi_haoshi_mon(conn,width,height,mon):
 
 
 def xuqiu_map_mon(conn,width,height,mon):
-    sql_xuqiu_map = "select name,count,mj from kanban_xuqiu_map where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                    "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_xuqiu_map = "select name,count,mj from kanban_xuqiu_map where year(date_sub(create_date,interval 1 month))='%s'" \
+                    "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_xuqiu_map = pd.read_sql(sql_xuqiu_map, conn)
 
     fabu_xuqiu_name = list(data_xuqiu_map.iloc[:, 0])
@@ -320,8 +320,8 @@ def xuqiu_map_mon(conn,width,height,mon):
     return fabu_xuqiu_map
 
 def xuqiu_diqu_mon(conn,width,height,mon):
-    sql_xuqiu_diqu = "select name,count,mj from kanban_xuqiu_diqu where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                     "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_xuqiu_diqu = "select name,count,mj from kanban_xuqiu_diqu where year(date_sub(create_date,interval 1 month))='%s'" \
+                     "and month(date_sub(create_date,interval 1 month))='%s' order by mj desc"%(str(mon)[:4],str(mon)[-2:])
     data_xuqiu_diqu = pd.read_sql(sql_xuqiu_diqu, conn)
 
     xuqiu_diqu_name = list(data_xuqiu_diqu.iloc[:, 0])
@@ -342,8 +342,8 @@ def xuqiu_diqu_mon(conn,width,height,mon):
     return xuqiu_diqu_overlap
 
 def xuqiu_type_mon(conn,width,height,zs_mj,mon):
-    sql_xuqiu_type = "select type,count,mj from kanban_xuqiu_type where CONCAT(year(date_sub(create_date,interval 1 month))," \
-                     "month(date_sub(create_date,interval 1 month)))='%s'"%(mon)
+    sql_xuqiu_type = "select type,count,mj from kanban_xuqiu_type where year(date_sub(create_date,interval 1 month))='%s'" \
+                     "and month(date_sub(create_date,interval 1 month))='%s'"%(str(mon)[:4],str(mon)[-2:])
     data_xuqiu_type = pd.read_sql(sql_xuqiu_type, conn)
 
     date_xuqiu_type_count = data_xuqiu_type.sort_values('count', ascending=False)
