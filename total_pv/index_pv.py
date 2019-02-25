@@ -110,12 +110,12 @@ def type():
 
     #数据库连接
     dbconn_type = pymysql.connect(
-        host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        host="******",
+        user="******",
+        password="*****",
         port=3306,
         charset='utf8',
-        db='seo_cai')
+        db='*******')
 
     #读取sql获取各土地类型pv数据
     if diqu_ct and diqu_ct != '请选择城市/地区':
