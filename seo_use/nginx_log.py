@@ -1,4 +1,4 @@
-#nginx日志入库（log.gz压缩文件）
+###nginx日志入库（log.gz压缩文件）
 
 import gzip
 import re
@@ -47,7 +47,7 @@ finally:
 	
 	
 	
-#nginx日志入库（未压缩格式）
+###nginx日志入库（未压缩格式）
 
 import re
 import pymysql
@@ -93,7 +93,7 @@ finally:
 
 
 
-#nginx 详细日志入库（log.gz压缩文件）
+###nginx pc/wap端详细日志入库（log.gz压缩文件）
 
 import gzip
 import re
