@@ -1,0 +1,43 @@
+### crontab 任务生成每天日志
+00 07 * * * ~/mypython/nglog_mysql/nglog.sh >> ~/mypython/nglog_mysql/log/nglog_`date +\%Y\%m\%d`.log 2>&1 &
+
+
+
+
+
+#### kettle 任务部署
+#数据库资源库trans
+#!/bin/bash
+export JAVA_HOME=/home/caizhiwei/jdk1.8.0_181
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/mysql-connector-java-5.1.46.jar
+export PATH=$PATH:$JAVA_HOME/bin
+cd /home/caizhiwei/data-integration
+./pan.sh -rep db_trans -user admin -pass admin -dir /test/ -trans email -level=basic log=log.log
+
+#数据库资源库job
+#!/bin/bash
+export JAVA_HOME=/home/caizhiwei/jdk1.8.0_181
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/mysql-connector-java-5.1.46.jar
+export PATH=$PATH:$JAVA_HOME/bin
+cd /home/caizhiwei/data-integration
+./kitchen.sh -rep db_trans -user admin -pass admin -dir /test/ -job test -level=basic >>/home/caizhiwei/log_jobs/test.log
+(需先将WINDOWS C:\Users\dell\.kettle文件夹内容复制到linux用户目录.kettle，注意查看repositories.xml 内容)
+
+#文件资源库trans
+#!/bin/bash
+export JAVA_HOME=/home/caizhiwei/jdk1.8.0_181
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/mysql-connector-java-5.1.46.jar
+export PATH=$PATH:$JAVA_HOME/bin
+/home/caizhiwei/data-integration/pan.sh -file=/home/caizhiwei/trans/jichushuju.ktr log=log.log
+
+#文件资源库job
+#!/bin/bash
+export JAVA_HOME=/home/caizhiwei/jdk1.8.0_181
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/mysql-connector-java-5.1.46.jar
+export PATH=$PATH:$JAVA_HOME/bin
+/home/caizhiwei/data-integration/kitchen.sh -file=/home/caizhiwei/jobs/j1.kjb log=log.log
+
+
+
+
+
