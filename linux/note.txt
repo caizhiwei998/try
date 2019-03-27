@@ -43,3 +43,11 @@ export PATH=$PATH:$JAVA_HOME/bin
 ### python脚本
 source ~/.virtualenvs/flask36/bin/activate
 python /home/caizhiwei/kettle_python/rfm/rfm.py
+
+
+
+### 文件传输
+# linux - win
+scp -r caizhiwei@10.10.10.58:/home/mypython/ ./
+# win - linux
+scp filename.py caizhiwei@10.10.10.58: /home/mypython/
