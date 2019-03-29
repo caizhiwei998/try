@@ -13,12 +13,12 @@ def soil_list_num():
                   + str(t_loc.day) + '日'
     #数据库连接
     dbconn = pymysql.connect(
-        host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        host="******",
+        user="******",
+        password="******",
         port=3306,
         charset='utf8',
-        db='seo_cai')
+        db='******')
 
     sql_province = '''
     SELECT province,sum(num) as num from    
@@ -115,12 +115,12 @@ def soil_list_area():
                   + str(t_loc.day) + '日'
     #数据库连接
     dbconn = pymysql.connect(
-        host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        host="******",
+        user="******",
+        password="******",
         port=3306,
         charset='utf8',
-        db='seo_cai')
+        db='******')
 
     sql_province = '''
     SELECT province,sum(area) as area from    
@@ -217,12 +217,12 @@ def soil_deal_num():
                   + str(t_loc.day) + '日'
     #数据库连接
     dbconn = pymysql.connect(
-        host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        host="******",
+        user="******",
+        password="******",
         port=3306,
         charset='utf8',
-        db='seo_cai')
+        db='******')
 
     sql_province = '''
     SELECT province,sum(num) as num from    
@@ -319,12 +319,12 @@ def soil_deal_area():
                   + str(t_loc.day) + '日'
     #数据库连接
     dbconn = pymysql.connect(
-        host="10.10.66.8",
-        user="caizhiwei",
-        password="20180803",
+        host="******",
+        user="******",
+        password="******",
         port=3306,
         charset='utf8',
-        db='seo_cai')
+        db='******')
 
     sql_province = '''
     SELECT province,sum(area) as area from    
