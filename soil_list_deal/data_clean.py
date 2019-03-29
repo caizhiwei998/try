@@ -1,12 +1,12 @@
 import pymysql
 
 dbconn = pymysql.connect(
-    host="10.10.66.35",
-    user="caizhiwei201807",
-    password="20180705.czw",
+    host="******",
+    user="******",
+    password="******",
     port=3306,
     charset='utf8',
-    db='center')
+    db='******')
 
 #土地挂牌数据（服务中心与主站）
 sql_list='''
@@ -79,12 +79,12 @@ dbconn.close()
 
 
 dbconn = pymysql.connect(
-    host="10.10.66.8",
-    user="caizhiwei",
-    password="20180803",
+    host="******",
+    user="******",
+    password="******",
     port=3306,
     charset='utf8',
-    db='seo_cai')
+    db='******')
 
 sql_drop_list='drop table if exists drill_soil_list'
 sql_create_list='''
