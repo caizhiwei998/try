@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block body_block %}
+        <div id="container" style="min-width: 310px; height: 720px; margin: 0 auto"></div>
+        <script>
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: '土流网全国各地土地挂牌宗数情况'
+    },
+    subtitle: {
+        text: '点击可下钻查询下一级{{ jiezhi_date }}'
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: '挂牌数（宗）'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.0f}'
+            }
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b><br/>'
+    },
+    series: [{
+        name: '全国',
+        colorByPoint: true,
+
+        data: [
+        {% for row_province in data_province %}
+        {
+            name: '{{ row_province.0 }}',
+            y: {{ row_province.1 }},
+            drilldown: '{{ row_province.0 }}'
+        },
+        {% endfor %}
+        ]
+    }],
+    drilldown: {
+        series: {{ series|safe }}
+    }
+});
+        </script>
+{% endblock %}
