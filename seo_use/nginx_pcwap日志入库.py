@@ -38,7 +38,7 @@ def log_write(log_date): #传入log日期，如‘20190224’
             password="******",
             port=3306,
             charset="utf8",
-            db="******")
+            db="nginx_log")
     cur = conn.cursor()
 
     try:
@@ -105,7 +105,7 @@ def rename_table(last_mon):
             password="******",
             port=3306,
             charset="utf8",
-            db="******")
+            db="nginx_log")
     cur = conn.cursor()
     #表按月存储
     backup_table_name="nglog_pcwap_"+last_mon
@@ -118,7 +118,8 @@ def rename_table(last_mon):
 
 
 def delete_insert(): #上月表中本月初数据移至本月表
-    last_mon = arrow.now().shift(months=-1).format("YYYY-MM")
+    last_mon = arrow.now().shift(months=-1).format("YYYYMM")
+    this_mon_01 = arrow.now().format("YYYY-MM-01")
     backup_table_name = "nglog_pcwap_" + last_mon
     conn = pymysql.connect(
             host="******",
@@ -126,10 +127,10 @@ def delete_insert(): #上月表中本月初数据移至本月表
             password="******",
             port=3306,
             charset="utf8",
-            db="******")
+            db="nginx_log")
     cur = conn.cursor()
-    sql_insert_last="insert into nglog_pcwap select * from `%s` where time >'%s' "%(backup_table_name,last_mon)
-    sql_delete_last="delete from `%s` where time >'%s' "%(backup_table_name,last_mon)
+    sql_insert_last="insert into nglog_pcwap select * from `%s` where time >='%s' "%(backup_table_name,this_mon_01)
+    sql_delete_last="delete from `%s` where time >='%s' "%(backup_table_name,this_mon_01)
     cur.execute(sql_insert_last)
     cur.execute(sql_delete_last)
     cur.close()
@@ -138,7 +139,7 @@ def delete_insert(): #上月表中本月初数据移至本月表
 if __name__ == '__main__':
     print('-'*60)
     if time.strftime("%Y%m%d")[-2:]=='02':#每月2号备份表
-        last_mon = arrow.now().shift(months=-1).format("YYYY-MM")
+        last_mon = arrow.now().shift(months=-1).format("YYYYMM")
         rename_table(last_mon)
         print('表已rename')
 
