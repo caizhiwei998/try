@@ -1,0 +1,17 @@
+钻取饼图做如下修改
+一、
+    chart: {
+        type: 'pie'
+    },
+    
+二、
+    plotOptions: {
+    series: {
+        borderWidth: 0,
+        dataLabels: {
+            enabled: true,
+            format: '{point.name}: {point.y:.2f}%'
+        }
+    }
+},
+    
