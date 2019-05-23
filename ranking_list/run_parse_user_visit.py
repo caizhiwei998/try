@@ -4,9 +4,9 @@ from parse_user_visit import  parse_user_visit_web,parse_user_visit_app
 
 
 dbconn = pymysql.connect(
-    host="10.10.66.8",
-    user="caizhiwei",
-    password="20180803",
+    host="******",
+    user="******",
+    password="******",
     db="ranking_list",
     port=3306,
     charset='utf8'
