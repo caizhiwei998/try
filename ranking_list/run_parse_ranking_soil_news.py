@@ -4,8 +4,8 @@ from parse_ranking_soil_news import  parse_nglog_web,parse_nglog_app
 
 dbconn = pymysql.connect(
     host="10.10.66.8",
-    user="caizhiwei",
-    password="20180803",
+    user="******",
+    password="******",
     db="ranking_list",
     port=3306,
     charset='utf8'
