@@ -10,10 +10,10 @@ class soil_news_rank:
     def dbconn(self):
         '''日志分析数据库连接'''
         dbconn = pymysql.connect(
-            host="10.10.66.8",
-            user="caizhiwei",
-            password="20180803",
-            db="ranking_list",
+            host="******",
+            user="******",
+            password="******",
+            db="******",
             port=3306,
             charset='utf8'
         )
