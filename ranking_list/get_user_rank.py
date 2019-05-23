@@ -16,10 +16,10 @@ class user_rank:
     def dbconn_tuliu_v2(self):
         '''连接tuliu_v2数据库'''
         dbconn = pymysql.connect(
-            host="10.10.66.35",
-            user="caizhiwei201807",
-            password="20180705.czw",
-            db='tuliu_v2',
+            host="******",
+            user="******",
+            password="******",
+            db='******',
             port=3306,
             charset='utf8'
         )
@@ -33,10 +33,10 @@ class user_rank:
     def dbconn_ranking_list(self):
         '''排行榜数据库连接'''
         dbconn = pymysql.connect(
-            host="10.10.66.8",
-            user="caizhiwei",
-            password="20180803",
-            db="ranking_list",
+            host="******",
+            user="******",
+            password="******",
+            db="******",
             port=3306,
             charset='utf8'
         )
