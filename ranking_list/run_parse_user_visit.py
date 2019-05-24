@@ -33,7 +33,7 @@ print('解析用户访问web程序运行时间： ' + str(costtime_web))
 
 
 starttime_app = datetime.datetime.now() #记录app日志解析起始时间
-visit_app = parse_user_visit_web(datestart,dateend)
+visit_app = parse_user_visit_app(datestart,dateend)
 visit_app.parse_log_pv()
 visit_app.data_delete()
 visit_app.close_dbconn()
