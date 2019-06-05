@@ -11,7 +11,7 @@ from email.header import Header
 def get_kw_base_df():
     '''获取近7天关键词基础数据'''
     dbconn = pymysql.connect(
-        host="10.10.66.8",
+        host="******",
         user="******",
         password="******",
         db="******",
