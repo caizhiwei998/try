@@ -5,6 +5,7 @@ from email.utils import parseaddr
 import datetime
 import pandas as pd
 import pymysql
+import os
 
 
 def get_start_num(num):
@@ -134,6 +135,13 @@ def insert_data(df):
     dbconn.close()
 
 
+def delete_file(date):
+    '''删除下载的文件'''
+    path = 'home/caizhiwei/'
+    name = '%s.csv'%(date)
+    os.remove(os.path.join(path, name))    
+    
+    
 if __name__ == '__main__':
     start_date = get_start_end_date()[0]
     end_date = get_start_end_date()[1]
@@ -141,3 +149,4 @@ if __name__ == '__main__':
     for date in date_list:
         df_sem = get_mails('百度推广统计报告服务', date)
         insert_data(df_sem)
+        delete_file(date)
