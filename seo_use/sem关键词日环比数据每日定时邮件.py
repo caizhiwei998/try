@@ -140,11 +140,11 @@ def sent_report(file1,file2,file3,name1,name2,name3):
     mail_pass = "******"  # 口令
 
     sender = '******@tuliu.com'
-    receivers = ['cai@******.com','******@******.com']  # 接收邮件
+    receivers = ['******@******.com','******@******.com']  # 接收邮件
 
     message = MIMEMultipart()
-    message['From'] = Header("数据部自动发送", 'utf-8')  # 发送者
-    message['To'] = Header("SEM", 'utf-8')  # 接收者
+    message['From'] = Header(sender, 'utf-8')  # 发送者
+    message['To'] = Header(','.join(receivers))  # 接收者
 
     subject = 'SEM关键词日报[%s]'%(date_ls()[0])  # 标题
     message['Subject'] = Header(subject, 'utf-8')
