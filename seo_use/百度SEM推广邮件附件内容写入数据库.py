@@ -69,7 +69,7 @@ def decode_str(s):
 def get_mails(prefix,date):
     '''获取邮件附件，参数输入邮件标题的前缀，及文件日期'''
     host = 'pop.qiye.aliyun.com'
-    username = 'seo-no-reply@tuliu.com'
+    username = '******@tuliu.com'
     password = '******'
 
     server = poplib.POP3(host)
