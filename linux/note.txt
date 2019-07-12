@@ -91,3 +91,12 @@ $nginx -s reload
 
 
 
+
+
+### 复制pip库 ###
+1.pip freeze > packages.txt  导出文件
+2.文件传到新服务器
+3.pip install -r packages.txt  安装库
+
+
+
