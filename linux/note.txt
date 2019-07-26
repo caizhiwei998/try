@@ -104,5 +104,6 @@ $nginx -s reload
 ### 查看进程运行情况
 ps -ef | grep sv_soil_ip_loc.py
 
-
+### 将程序以忽略挂起信号的方式运行起来
+nohup python file.py > out.log 2>&1 &
 
