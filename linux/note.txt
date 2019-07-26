@@ -100,3 +100,9 @@ $nginx -s reload
 
 
 
+
+### 查看进程运行情况
+ps -ef | grep sv_soil_ip_loc.py
+
+
+
